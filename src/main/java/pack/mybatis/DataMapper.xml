@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+	<select id="selectTpList" resultType="tpdto">
+		select * from tp_board
+		order by tp_num desc
+	</select>
+
+	<select id="selectTpListMy" resultType="tpdto"
+		parameterType="String">
+		select * from tp_board
+		left outer join patient
+		on tp_pn=p_number
+		where tp_id={tp_id}
+		order by tp_num
+		desc
+	</select>
+
+
+	<insert id="insertTp" parameterType="tpbean">
+		insert into tp_board
+		(tp_medicine, tp_tem, tp_content, tp_date, tp_pn,
+		tp_dn)
+		value(tp_medicine=#{tp_medicine}, tp_tem=#{tp_tem},
+		tp_content=#{tp_content}, now(), tp_pn=#{tp_pn},
+		tp_dn=#{tp_dn})
+
+	</insert>
+
+	<select id="selectClass" resultType="budto">
+		select c_class from buser
+	</select>
+
+
+	<select id="selectDoctorName" resultType="ddto">
+		<!-- select d_name from doctor inner join class on c_class = d_class where 
+			d_class=${c_class} -->
+	</select>
+
+
+	<!-- 로그인 -->
+	<select id="selectPatientData" resultType="pdto">
+		select * from patient
+	</select>
+
+	<select id="selectLoginData" resultType="pdto"
+		parameterType="string">
+		select * from patient where p_id=#{p_id}
+	</select>
+
+
+	<!-- 회원 가입 -->
+	<insert id="insertPatient" parameterType="pbean">
+		insert into patient value(p_id=#{p_id}, p_pw=#{p_pw}, p_number=#{p_number},
+		p_name=#{p_name}, p_gen=#{p_gen}, p_email=#{p_email},
+		p_addr=#{p_addr}, p_height=#{p_height}, p_weight=#{p_weight})
+	</insert>
+	
+</mapper>
+

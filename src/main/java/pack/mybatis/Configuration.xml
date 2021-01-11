@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+ <typeAliases>
+ 	<typeAlias type="pack.model.TpDto" alias="tpdto"/>
+ 	<typeAlias type="pack.controller.TpBean" alias="tpbean"/>
+ 	
+ 	<typeAlias type="pack.doctor.DoctorDto" alias="ddto" />
+    <typeAlias type="pack.doctor.BuserDto" alias="budto" />
+    
+    <typeAlias type="pack.model.PatientDto" alias="pdto" />
+    <typeAlias type="pack.controller.PatientBean" alias="pbean"/>
+ </typeAliases>
+ 
+ <mappers>
+  <mapper resource="pack/mybatis/DataMapper.xml" />
+ </mappers>
+</configuration>
+
